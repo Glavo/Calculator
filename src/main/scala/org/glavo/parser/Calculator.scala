@@ -34,7 +34,6 @@ object Calculator extends CalculatorParser {
                                 case l @ Let(name, value) =>
                                     l.eval
                                     reader.println(s"$name = ${value.eval}")
-                                    reader.println(s"-> ()")
                                     reader.println()
 
                                 case other =>

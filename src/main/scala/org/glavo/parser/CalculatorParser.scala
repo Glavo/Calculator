@@ -34,7 +34,7 @@ class CalculatorParser extends JavaTokenParsers {
                 }
             }
 
-    def atom: Parser[Node] = 
+    def atom: Parser[Node] =
         number |
             "(" ~> expr <~ ")"
 
