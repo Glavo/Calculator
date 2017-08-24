@@ -25,8 +25,7 @@ class CalculatorParser extends JavaTokenParsers {
 
 
     def term: Parser[Node] =
-        "(" ~> expr <~ ")" |
-            number ~ (("*" | "/") ~ number).* ^^ {
+            atom ~ (("*" | "/") ~ atom).* ^^ {
                 case t ~ list => list.foldLeft(t) { (n, t) =>
                     t match {
                         case ("*" ~ nn) => *(n, nn)
@@ -34,6 +33,10 @@ class CalculatorParser extends JavaTokenParsers {
                     }
                 }
             }
+
+    def atom: Parser[Node] = 
+        number |
+            "(" ~> expr <~ ")"
 
     def value: Parser[Node] =
         ident ^^ Value
